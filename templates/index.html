@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Home - AI Medical Chatbot{% endblock %}
+{% block body_class %}index-bg{% endblock %}
+
+{% block content %}
+<!-- Hero / CTA -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Your Personal AI Medical Assistant 🤖</h1>
+        <p>Get reliable, concise answers to your medical questions in real-time.</p>
+        <a href="#chat-section" class="cta-btn">Start Chatting</a>
+    </div>
+</section>
+
+<!-- Chat Section -->
+<section id="chat-section" class="chat-section">
+    <div class="chat-container">
+        <h2>Ask Your Medical Assistant</h2>
+        <div id="chat-box"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your medical question...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>
+
+<script>
+const input = document.getElementById("user-input");
+const chatBox = document.getElementById("chat-box");
+
+input.addEventListener("keypress", async function(e){
+    if (e.key === "Enter") await sendMessage();
+});
+
+async function sendMessage() {
+    const message = input.value.trim();
+    if (!message) return;
+
+    chatBox.innerHTML += `<div class='user-msg'><b>You:</b> ${message}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+    input.value = "";
+
+    try {
+        const res = await fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message })
+        });
+        const data = await res.json();
+        let botMsg = data.response || `Error: ${data.error}`;
+
+        // Convert newlines to paragraph breaks
+        botMsg = botMsg.split('\n').map(line => `<p>${line}</p>`).join('');
+
+        // Convert URLs into clickable links
+        botMsg = botMsg.replace(
+            /(https?:\/\/[^\s]+)/g,
+            '<a href="$1" target="_blank">$1</a>'
+        );
+
+        chatBox.innerHTML += `<div class='bot-msg'><b>Bot:</b> ${botMsg}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    } catch(err) {
+        chatBox.innerHTML += `<div class='bot-msg'><b>Bot:</b> Error: ${err}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+}
+</script>
+{% endblock %}

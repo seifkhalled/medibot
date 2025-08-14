@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}About - AI Medical Chatbot{% endblock %}
+{% block body_class %}about-bg{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <div class="about-container">
+        <h1>About This Project</h1>
+
+        <p>The <strong>AI Medical Chatbot</strong> is an intelligent virtual assistant designed to provide accurate and reliable medical information in real-time. It uses a <strong>Retrieval-Augmented Generation (RAG)</strong> system that combines a vector-based document retrieval with NLP processing to answer user queries effectively.</p>
+
+        <h2>Key Features:</h2>
+        <ul>
+            <li>Provides concise, evidence-based answers to medical questions.</li>
+            <li>Detects critical symptoms and issues urgent red-flag warnings.</li>
+            <li>Offers references and external resources for further reading.</li>
+            <li>Handles various medical topics, including diseases, treatments, and preventive care.</li>
+            <li>Maintains a user-friendly and interactive chat interface.</li>
+        </ul>
+
+        <h2>Technical Overview:</h2>
+        <ul>
+            <li><strong>Backend:</strong> Python & Flask for handling requests and responses.</li>
+            <li><strong>NLP & Retrieval:</strong> HuggingFace embeddings, custom NLP pipelines, and LangChain for retrieval-based generation.</li>
+            <li><strong>Vector Database:</strong> Pinecone for storing and querying document embeddings.</li>
+            <li><strong>Frontend:</strong> HTML, CSS, and JavaScript for a responsive chat interface.</li>
+            <li><strong>Knowledge Sources:</strong> Gale Encyclopedia of Medicine, curated medical literature, and domain-specific articles.</li>
+        </ul>
+
+        <h2>References & Resources:</h2>
+        <ul>
+            <li><a href="https://www.cancer.gov/about-cancer" target="_blank">National Cancer Institute (NCI)</a></li>
+            <li><a href="https://www.cdc.gov/" target="_blank">Centers for Disease Control and Prevention (CDC)</a></li>
+            <li><a href="https://www.medlineplus.gov/" target="_blank">MedlinePlus</a></li>
+            <li><a href="https://www.mayoclinic.org/" target="_blank">Mayo Clinic</a></li>
+        </ul>
+
+        <p>This project was developed as part of the <strong>NTI NLP Summer Training</strong> to demonstrate practical applications of AI in healthcare, providing users with accurate information while emphasizing the importance of consulting licensed clinicians for personalized advice.</p>
+
+        <h2>Meet the Team</h2>
+        <div class="authors-container">
+            <!-- Author 1 -->
+            <div class="author-profile">
+                <a href="http://www.linkedin.com/in/ahmedaboulsoud" target="_blank">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQFhs_wEsY124Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1719017436199?e=1758153600&v=beta&t=1AOSlDBH9ER8fp_aC2fwp4s8c70WE1-rV7t4r_nINqk" alt="Ahmed Aboulsoud" class="linkedin-img">
+                </a>
+                <p><strong>Ahmed Aboulsoud</strong></p>
+                <p>Data Scientist & ML Enthusiast</p>
+            </div>
+
+            <!-- Author 2 -->
+            <div class="author-profile">
+                <a href="https://www.linkedin.com/in/salma-elshazli-2151ab249?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEWYyehXUpDyQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1725394392816?e=1758153600&v=beta&t=XCkrTBJvNOpW4hKKTcJqY2n6ckKHVAbxpeY5s4T_n6s" alt="Salma Elshazli" class="linkedin-img">
+                </a>
+                <p><strong>Salma Elshazli</strong></p>
+                <p>Data Scientist & Aspiring ML Engineer</p>
+            </div>
+
+            <!-- Author 3 -->
+            <div class="author-profile">
+                <a href="https://www.linkedin.com/in/seif-khalled-83bb99252/" target="_blank">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEpanVNgm2wMQ/profile-displayphoto-scale_400_400/B4DZhXVAisGgAg-/0/1753811783225?e=1758153600&v=beta&t=jGh3qEZuySO1yiLXFLknN-sM_kA__a7LCT0kWuSh140" alt="Seif Khalled" class="linkedin-img">
+                </a>
+                <p><strong>Seif Khalled</strong></p>
+                <p>Data Scientist & Aspiring ML Engineer</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.authors-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.author-profile {
+    text-align: center;
+    max-width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.author-profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.linkedin-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.linkedin-img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive: stack authors on small screens */
+@media (max-width: 800px) {
+    .authors-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+</style>
+{% endblock %}
